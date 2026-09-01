@@ -1,0 +1,33 @@
+{
+  "name": "evolution-as-token live track",
+  "version": 1,
+  "registered_at": "2026-09-01 23:23:09",
+  "data_cutoff": "2026-08-01",
+  "prediction_horizon": {
+    "start": "2026-09-01",
+    "end": "2027-02-28"
+  },
+  "task": "预测截止后窗口内首次出现的 SARS-CoV-2 RBD 单突变（Nextstrain open GenBank 口径，与 0037 同一真值管道）",
+  "candidates": "RBD 331-531 全部单突变（Wuhan 参照，3819 个，截止前已出现者视为已知）",
+  "systems": {
+    "v3_linear": "grammar(fitness14/tol14/jsd_site/esc_cand) IRLS",
+    "v3_lm": "v3 + evoLM-v2 logp（torch GRU 两段式头，region 条件化，151k 事件，12 epochs）"
+  },
+  "primary_metrics": [
+    "hit@10",
+    "hit@50",
+    "auc",
+    "auc_strict(prev>=5)"
+  ],
+  "reconciliation_rule": "2027-03-01 用同期 Nextstrain open 元数据重算首现集合；分数文件已含全候选评分可第三方复算；注册后本文件与预测文件不再修改，修正只能以新版本号追加",
+  "model_seeds": {
+    "torch_lm": 7,
+    "negative_sampling": 7
+  },
+  "data_provenance": [
+    "Nextstrain ncov open metadata (2026-08 快照)",
+    "14-bg RBD DMS (kp3lp8, SHA 2afbb213)",
+    "SARS2-RBD-escape-calc",
+    "JSD_by_target (tstarrlab epistatic shifts, Starr et al. 2022 方法)"
+  ]
+}
