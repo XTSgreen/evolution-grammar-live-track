@@ -1,0 +1,102 @@
+{
+  "run_at_utc": "2026-09-02 11:13:51",
+  "kind": "interim_progress",
+  "window": {
+    "start": "2026-09-01",
+    "end": "2027-02-28"
+  },
+  "metadata_file": "metadata.tsv.zst",
+  "rows_in_window": 0,
+  "distinct_rbd_mutations_seen": 0,
+  "note": "月度进度快照；正式对账 2027-03-01 按注册协议重算，本文件不构成对账结果",
+  "systems": {
+    "v1": [
+      {
+        "file": "v1/predictions_v3_linear.csv",
+        "missing": false,
+        "nominations_top10": 10,
+        "hits_top10": 0,
+        "hit@10_so_far": 0.0,
+        "hit_details_top10": [],
+        "nominations_top50": 50,
+        "hits_top50": 0,
+        "hit@50_so_far": 0.0,
+        "hit_details_top50": []
+      },
+      {
+        "file": "v1/predictions_v3_lm.csv",
+        "missing": false,
+        "nominations_top10": 10,
+        "hits_top10": 0,
+        "hit@10_so_far": 0.0,
+        "hit_details_top10": [],
+        "nominations_top50": 50,
+        "hits_top50": 0,
+        "hit@50_so_far": 0.0,
+        "hit_details_top50": []
+      }
+    ],
+    "v2": [
+      {
+        "file": "v2/predictions_bloom_esc.csv",
+        "missing": false,
+        "nominations_top10": 10,
+        "hits_top10": 0,
+        "hit@10_so_far": 0.0,
+        "hit_details_top10": [],
+        "nominations_top50": 50,
+        "hits_top50": 0,
+        "hit@50_so_far": 0.0,
+        "hit_details_top50": []
+      },
+      {
+        "file": "v2/predictions_bloom_full.csv",
+        "missing": false,
+        "nominations_top10": 10,
+        "hits_top10": 0,
+        "hit@10_so_far": 0.0,
+        "hit_details_top10": [],
+        "nominations_top50": 50,
+        "hits_top50": 0,
+        "hit@50_so_far": 0.0,
+        "hit_details_top50": []
+      },
+      {
+        "file": "v2/predictions_bloom_zeroshot.csv",
+        "missing": false,
+        "nominations_top10": 10,
+        "hits_top10": 0,
+        "hit@10_so_far": 0.0,
+        "hit_details_top10": [],
+        "nominations_top50": 50,
+        "hits_top50": 0,
+        "hit@50_so_far": 0.0,
+        "hit_details_top50": []
+      },
+      {
+        "file": "v2/predictions_v3_linear.csv",
+        "missing": false,
+        "nominations_top10": 10,
+        "hits_top10": 0,
+        "hit@10_so_far": 0.0,
+        "hit_details_top10": [],
+        "nominations_top50": 50,
+        "hits_top50": 0,
+        "hit@50_so_far": 0.0,
+        "hit_details_top50": []
+      },
+      {
+        "file": "v2/predictions_v3_lm.csv",
+        "missing": false,
+        "nominations_top10": 10,
+        "hits_top10": 0,
+        "hit@10_so_far": 0.0,
+        "hit_details_top10": [],
+        "nominations_top50": 50,
+        "hits_top50": 0,
+        "hit@50_so_far": 0.0,
+        "hit_details_top50": []
+      }
+    ]
+  }
+}
