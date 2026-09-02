@@ -1,0 +1,40 @@
+{
+  "name": "evolution-as-token live track",
+  "version": 2,
+  "registered_at": "2026-09-02 18:17:53",
+  "data_cutoff": "2026-08-01",
+  "prediction_horizon": {
+    "start": "2026-09-01",
+    "end": "2027-02-28"
+  },
+  "task": "预测截止后窗口内首次出现的 SARS-CoV-2 RBD 单突变（Nextstrain open GenBank 口径，与 0037 同一真值管道）",
+  "candidates": "RBD 331-531 全部单突变（Wuhan 参照，3819 个，截止前已出现者视为已知）",
+  "systems": {
+    "bloom_esc": "grammar(pos_mut/aa_seen/pos_rec) + z(bloom mut-fitness) + z(evescape) IRLS [主系统]",
+    "bloom_full": "bloom_esc + evoLM-v2 logp（torch GRU 两段式头，region 条件化）",
+    "v3_lm": "v1 注册系统复现（grammar/dms/jsd/esc + evoLM-v2 logp IRLS）",
+    "v3_linear": "v1 注册系统复现（grammar/dms/jsd/esc IRLS）",
+    "bloom_zeroshot": "bloom 分数零样本排序（文献口径，参考）"
+  },
+  "relation_to_v1": "同一数据截止与窗口的追加注册：v1 注册于前沿方法收编（R43/44）之前，v2 收编后；对账时同窗口对比",
+  "primary_metrics": [
+    "hit@10",
+    "hit@50",
+    "auc",
+    "auc_strict(prev>=5)"
+  ],
+  "reconciliation_rule": "2027-03-01 用同期 Nextstrain open 元数据重算首现集合，v1 与 v2 同日公布；分数文件已含全候选评分可第三方复算；v2 注册后不再修改",
+  "model_seeds": {
+    "torch_lm": 7,
+    "negative_sampling": 7,
+    "lm_epochs": 12
+  },
+  "data_provenance": [
+    "Nextstrain ncov open metadata (2026-08 快照)",
+    "14-bg RBD DMS (kp3lp8, SHA 2afbb213)",
+    "SARS2-RBD-escape-calc",
+    "JSD_by_target (tstarrlab epistatic shifts, Starr et al. 2022 方法)",
+    "Bloom mut-fitness (Obermeyer et al. 系 results_aa_fitness)",
+    "evescape (Thadani et al.)"
+  ]
+}
