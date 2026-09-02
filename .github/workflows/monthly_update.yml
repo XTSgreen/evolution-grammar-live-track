@@ -1,0 +1,42 @@
+# GitHub Actions: 月度对账进度
+# 每月 1 日 UTC 03:00 运行：下载最新 Nextstrain 数据 → 对照 v1/v2 提名清单累计命中
+# → 追加 reconciliation/progress_*.json → push。不修改任何注册内容。
+name: monthly-update
+
+on:
+  schedule:
+    - cron: '0 3 1 * *'  # 每月 1 日
+  workflow_dispatch: {}   # 手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  progress:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pandas zstandard
+
+      - name: Download latest Nextstrain ncov open metadata
+        run: |
+          curl -sL --fail "https://data.nextstrain.org/files/ncov/open/metadata.tsv.zst" -o metadata.tsv.zst
+          ls -lh metadata.tsv.zst
+
+      - name: Compute interim reconciliation progress
+        run: python tools/monthly_progress.py --metadata metadata.tsv.zst
+
+      - name: Commit and push progress
+        run: |
+          git config user.name "live-track-bot"
+          git config user.email "bot@evolution-grammar.local"
+          git add reconciliation/
+          git diff --cached --quiet || git commit -m "interim progress $(date -u +%Y-%m-%d)"
+          git push
