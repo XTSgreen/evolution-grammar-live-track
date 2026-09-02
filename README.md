@@ -14,14 +14,14 @@
 - **系统**：v3_linear（语法特征线性提案器）与 v3_lm（+ 因子化事件流语言模型）
 - **主指标**：hit@10、hit@50、auc、auc_strict（流行度 ≥5 过滤）
 
-## 文件（v1）
+### 文件（v1/）
 
 | 文件 | 内容 |
 | --- | --- |
-| `eval_protocol_v1.json` | 评分协议（口径、指标、对账规则、数据来源） |
-| `predictions_v1_v3_linear.csv` | 全部 3,678 个候选的线性系统评分（含排名标记） |
-| `predictions_v1_v3_lm.csv` | 神经增强系统的全量评分 |
-| `predictions_v1_summary.json` | 两个系统的 top-10 / top-50 提名清单 |
+| `v1/eval_protocol.json` | 评分协议（口径、指标、对账规则、数据来源） |
+| `v1/predictions_v3_linear.csv` | 全部 3,678 个候选的线性系统评分（含排名标记） |
+| `v1/predictions_v3_lm.csv` | 神经增强系统的全量评分 |
+| `v1/predictions_summary.json` | 两个系统的 top-10 / top-50 提名清单 |
 
 ## 注册内容（v2 追加，冻结于 2026-09-02）
 
@@ -34,15 +34,30 @@
 
 | 文件 | 内容 |
 | --- | --- |
-| `eval_protocol_v2.json` | v2 评分协议（系统定义、与 v1 的关系、对账规则） |
-| `predictions_v2_bloom_esc.csv` | 主系统全量评分（3,678 候选） |
-| `predictions_v2_bloom_full.csv` / `predictions_v2_v3_lm.csv` / `predictions_v2_v3_linear.csv` | 其余系统全量评分 |
-| `predictions_v2_bloom_zeroshot.csv` | 零样本参考排序 |
-| `predictions_v2_summary.json` | 各系统 top-10 / top-50 提名清单 |
+| `v2/eval_protocol.json` | v2 评分协议（系统定义、与 v1 的关系、对账规则） |
+| `v2/predictions_bloom_esc.csv` | 主系统全量评分（3,678 候选） |
+| `v2/predictions_bloom_full.csv` / `v2/predictions_v3_lm.csv` / `v2/predictions_v3_linear.csv` | 其余系统全量评分 |
+| `v2/predictions_bloom_zeroshot.csv` | 零样本参考排序 |
+| `v2/predictions_summary.json` | 各系统 top-10 / top-50 提名清单 |
+
+> 目录结构说明（2026-09-02 整理）：注册内容自根目录移入 `v1/`、`v2/`，文件内容未做任何修改（git 历史可查）。
+
+## 数据来源与许可
+
+| 数据 | 来源 | 许可 |
+| --- | --- | --- |
+| Nextstrain ncov open 元数据 | nextstrain.org | CC BY 4.0 |
+| 14 背景 RBD DMS（kp3lp8） | tstarrlab/SARS-CoV-2-RBD_DMS_Omicron-KP3-LP8 | MIT |
+| mut-fitness / evescape / comparator | jbloomlab/SARS2-mut-fitness | MIT |
+| 语法特征、JSD 位移（自算） | 派生自上述 MIT 数据 | 随本仓库 MIT |
 
 ## 规则
 
 2027-03-01 起，用同期 Nextstrain ncov open 新快照重算"窗口内首次出现"的突变集合，
 对照本仓库的 `in_top10` / `in_top50` 标记公布命中结果。第三方可用全量评分文件独立复算。
 注册后本仓库内容不再修改；任何更正只以追加版本（v3, v4…）的方式发布。
+
+## 许可
+
+本仓库的预测结果与衍生数据以 MIT 许可发布（见 `LICENSE`）。
 
