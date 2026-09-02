@@ -46,7 +46,7 @@
 
 | 数据 | 来源 | 许可 |
 | --- | --- | --- |
-| Nextstrain ncov open 元数据 | nextstrain.org | CC BY 4.0 |
+| Nextstrain ncov open 元数据 | data.nextstrain.org（GenBank 开放数据 + RKI CC-BY-4.0） | 开放数据，署名要求 |
 | 14 背景 RBD DMS（kp3lp8） | tstarrlab/SARS-CoV-2-RBD_DMS_Omicron-KP3-LP8 | MIT |
 | mut-fitness / evescape / comparator | jbloomlab/SARS2-mut-fitness | MIT |
 | 语法特征、JSD 位移（自算） | 派生自上述 MIT 数据 | 随本仓库 MIT |
